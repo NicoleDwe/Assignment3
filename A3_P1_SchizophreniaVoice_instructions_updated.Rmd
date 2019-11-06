@@ -229,6 +229,7 @@ d1 <- onerow %>% group_by(Diagnosis) %>%
                       IQ_SD = sd(TotalIQ, na.rm = TRUE))
 
 d1 <- round(d1, digits = 2)
+d1
 write.csv(d1, "d1.csv")
 
 #descriptive stats by diagnosis and study 
@@ -252,6 +253,7 @@ d2 <- onerow %>% group_by(Diagnosis, Study) %>%
                       IQ_SD = sd(TotalIQ, na.rm = TRUE))
 
 d2 <- round(d2, digits = 2)
+d2
 write.csv(d2, "d2.csv")
 ```
 
@@ -343,11 +345,6 @@ summary(m9)
 summ9 <- summary(m9)
 coef9 <- round(as.data.frame(summ9$coefficients), digits = 2)
 write.csv(coef9, "coef9.csv")
-
-#plots 
-ggplot(data = danish, aes(y = scale_iqr, x = Diagnosis, color = Diagnosis)) + geom_point() + geom_line(method = "lm")
-
-
 ```
 
 ## N.B. Remember to save the acoustic features of voice in a separate file, so to be able to load them next time

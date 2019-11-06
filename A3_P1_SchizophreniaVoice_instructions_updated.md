@@ -247,6 +247,20 @@ d1 <- onerow %>% group_by(Diagnosis) %>%
                       IQ_SD = sd(TotalIQ, na.rm = TRUE))
 
 d1 <- round(d1, digits = 2)
+d1
+```
+
+    ## # A tibble: 2 x 17
+    ##   Diagnosis TotalNumber Girls  Boys Age_Mean Age_SD Education_Mean
+    ##       <dbl>       <dbl> <dbl> <dbl>    <dbl>  <dbl>          <dbl>
+    ## 1         0         116    50    66     26.7   9.19           14.9
+    ## 2         1         105    45    60     26.7   9.02           12.9
+    ## # … with 10 more variables: Education_SD <dbl>, SANS_Mean <dbl>,
+    ## #   SANS_SD <dbl>, SAPS_Mean <dbl>, verbalIQ_Mean <dbl>,
+    ## #   verbalIQ_SD <dbl>, nonverbalIQ_Mean <dbl>, nonverbalIQ_SD <dbl>,
+    ## #   IQ_Mean <dbl>, IQ_SD <dbl>
+
+``` r
 write.csv(d1, "d1.csv")
 
 #descriptive stats by diagnosis and study 
@@ -270,6 +284,27 @@ d2 <- onerow %>% group_by(Diagnosis, Study) %>%
                       IQ_SD = sd(TotalIQ, na.rm = TRUE))
 
 d2 <- round(d2, digits = 2)
+d2
+```
+
+    ## # A tibble: 8 x 18
+    ## # Groups:   Diagnosis [2]
+    ##   Diagnosis Study TotalNumber Girls  Boys Age_Mean Age_SD Education_Mean
+    ##       <dbl> <dbl>       <dbl> <dbl> <dbl>    <dbl>  <dbl>          <dbl>
+    ## 1         0     1          36    17    19     22.7   3.19           13.4
+    ## 2         0     2          23     7    16     23.6   3.61           15.2
+    ## 3         0     3          28    13    15     37.5  13.1            15.9
+    ## 4         0     4          29    13    16     24.4   4.58           15.8
+    ## 5         1     1          34    16    18     22.8   3.13           12.1
+    ## 6         1     2          23     6    17     23.4   3.94           12.0
+    ## 7         1     3          19    11     8     40.8  12.4            12.8
+    ## 8         1     4          29    12    17     24.8   3.66           14.7
+    ## # … with 10 more variables: Education_SD <dbl>, SANS_Mean <dbl>,
+    ## #   SANS_SD <dbl>, SAPS_Mean <dbl>, verbalIQ_Mean <dbl>,
+    ## #   verbalIQ_SD <dbl>, nonverbalIQ_Mean <dbl>, nonverbalIQ_SD <dbl>,
+    ## #   IQ_Mean <dbl>, IQ_SD <dbl>
+
+``` r
 write.csv(d2, "d2.csv")
 ```
 
@@ -720,14 +755,7 @@ summary(m9)
 summ9 <- summary(m9)
 coef9 <- round(as.data.frame(summ9$coefficients), digits = 2)
 write.csv(coef9, "coef9.csv")
-
-#plots 
-ggplot(data = danish, aes(y = scale_iqr, x = Diagnosis, color = Diagnosis)) + geom_point() + geom_line(method = "lm")
 ```
-
-    ## Warning: Ignoring unknown parameters: method
-
-![](A3_P1_SchizophreniaVoice_instructions_updated_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 N.B. Remember to save the acoustic features of voice in a separate file, so to be able to load them next time
 -------------------------------------------------------------------------------------------------------------
